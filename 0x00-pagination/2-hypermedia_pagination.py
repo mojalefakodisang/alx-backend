@@ -49,13 +49,13 @@ class Server:
         next_page = 0
         prev_page = 0
 
-        if (page - 1) != 0 and self.get_page(page, page_size) is not None:
+        if page > 1:
             prev_page = page - 1
         else:
             prev_page = None
 
-        if ((page + 1) >= len(self.get_page(page, page_size)) and
-                self.get_page(page + 1, page_size) is not None):
+        total_pages = math.ceil(len(self.dataset()) / page_size)
+        if page < total_pages:
             next_page = page + 1
         else:
             next_page = None
